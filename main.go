@@ -4,6 +4,7 @@ import (
     "net/http"
 
     "github.com/gin-gonic/gin"
+    "github.com/gin-contrib/cors"
 )
 
 // album 表示有关专辑的数据.
@@ -23,6 +24,7 @@ var albums = []album{
 
 func main() {
     router := gin.Default()
+    router.Use(cors.Default())
     router.GET("/v1/api/albums", getAlbums)
     router.GET("/v1/api/albums/:id", getAlbumByID)
     router.POST("/v1/api/albums", postAlbums)
